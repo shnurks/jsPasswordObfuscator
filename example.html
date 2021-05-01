@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>jsPasswordObfuscator</title>
+		<style>
+			* {
+				font-size: 3vh;
+				margin: .5vh;
+			}
+			input {
+				border: none;
+				border-bottom: 1px solid;
+				width: 100%;
+			}
+			h1 {
+				margin-bottom: 4vh;
+				font-size: 6vh;
+			}
+		</style>
+		<script type="text/javascript" src="https://shnurks.github.io/jsPasswordObfuscator/pwObfuscate.js"></script>
+		<script>
+			async function obfusStuff() {
+				try {
+					resElement = document.getElementById("res")
+					resElement.value = await obfusPw(document.getElementById('rawPw').value,Number(document.getElementById('arg').value))
+					resElement.select()
+					resElement.setSelectionRange(0, 513)
+					document.execCommand("copy");
+				} catch(e) {
+					console.error(e)
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1 style="text-align:center">jsPasswordObfuscator Example Page</h1>
+		<input id="rawPw" placeholder="Enter Password" type="password">
+		<br>
+		<button onclick="obfusStuff()">Obfuscate!</button>
+		<select id="arg" style="width: 6,5vh">
+			<option value="16" selected>16</option>
+			<option value="5">5</option>
+			<option value="4">4</option>
+			<option value="2">2</option>
+		</select>
+		
+		<br>
+		<input id="res" value="" placeholder="Result">
+	</body>
+</html>
