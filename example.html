@@ -6,14 +6,21 @@
 				font-size: 3vh;
 				margin: .5vh;
 			}
-			input {
+			input, textarea {
 				border: none;
 				border-bottom: 1px solid;
 				width: 100%;
+				resize: vertical;
 			}
 			h1 {
 				margin-bottom: 4vh;
 				font-size: 6vh;
+			}
+			button {
+				background-color: #eeeeee;
+				border: 1px solid black;
+				padding: .5vh;
+				border-radius: 4px;
 			}
 		</style>
 		<script type="text/javascript" src="https://shnurks.github.io/jsPasswordObfuscator/pwObfuscate.js"></script>
@@ -21,9 +28,9 @@
 			async function obfusStuff() {
 				try {
 					resElement = document.getElementById("res")
-					resElement.value = await obfusPw(document.getElementById('rawPw').value,Number(document.getElementById('arg').value))
+					resElement.value = await obfusPw(document.getElementById('rawPw').value,document.getElementById("compliance").checked,Number(document.getElementById('arg').value))
 					resElement.select()
-					resElement.setSelectionRange(0, 513)
+					resElement.setSelectionRange(0, 516)
 					document.execCommand("copy");
 				} catch(e) {
 					console.error(e)
@@ -42,8 +49,8 @@
 			<option value="4">4</option>
 			<option value="2">2</option>
 		</select>
-		
+		<input id="compliance" type="checkbox" style="width: 2vh" checked><label>Add string to comply with most password rules</label>
 		<br>
-		<input id="res" value="" placeholder="Result">
+		<textarea id="res" value="" placeholder="Result" style="min-height: 10.5vh"></textarea>
 	</body>
 </html>
