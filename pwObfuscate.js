@@ -1,6 +1,6 @@
-async function obfusPw(rawPassword, satisfyRequirements = true, mode = 16) {	//first parameter is your password, second parameter specifies wheter you want to add a certain string to pass most password requirements, thrid parameter specifies how many bits deep each character should be
+async function obfusPw(rawPassword, satisfyRequirements = true, mode = 5, hashAlgorithm = "SHA-256") {	//first parameter is your password, second parameter specifies wheter you want to add a certain string to pass most password requirements, thrid parameter specifies how many bits deep each character should be fourth parameter is the hashing algorithm
 	
-	if(satisfyRequirements == true) {
+	if(satisfyRequirements == true) {	//those rules are very stupid...
 		complianceString = "aA1!"
 	} else {
 		complianceString = ""
@@ -8,9 +8,11 @@ async function obfusPw(rawPassword, satisfyRequirements = true, mode = 16) {	//f
 	
 
 	msgUint8 = new TextEncoder().encode(rawPassword)
-	hashBuffer = await crypto.subtle.digest('SHA-512', msgUint8)
+	hashBuffer = await crypto.subtle.digest(hashAlgorithm, msgUint8)
+
 	switch(mode) {
 	case 16:
+		console.warn("Using UTF-16 will probably not be accepted by most websites")
 		return complianceString + Array.from(new Uint16Array(hashBuffer)).map(b => String.fromCharCode(b)).join('')
 	break
 	case 8:
