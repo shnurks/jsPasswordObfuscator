@@ -28,7 +28,7 @@
 			async function obfusStuff() {
 				try {
 					resElement = document.getElementById("res")
-					resElement.value = await obfusPw(document.getElementById('rawPw').value,document.getElementById("compliance").checked,Number(document.getElementById('arg').value),document.getElementById('alg').value)
+					resElement.value = await obfusPw(document.getElementById('rawPw').value + document.getElementById('platformName').value,document.getElementById("compliance").checked,Number(document.getElementById('arg').value),document.getElementById('alg').value)
 					resElement.select()
 					resElement.setSelectionRange(0, 516)
 					document.execCommand("copy");
@@ -40,7 +40,8 @@
 	</head>
 	<body>
 		<h1 style="text-align:center">jsPasswordObfuscator Example Page</h1>
-		<input id="rawPw" placeholder="Enter Password" type="password">
+		<input id="rawPw" placeholder="Enter Password" type="password" style="width: 50%">
+		<input id="platformName" placeholder="Platform Name" type="text" style="width: auto">
 		<br>
 		<button onclick="obfusStuff()">Obfuscate!</button>
 		<select id="arg" style="width: 6,5vh">
