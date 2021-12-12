@@ -12,3 +12,4 @@ To use it in default mode just call the function with your password as a string 
   4: The hashing algorithm (default: "SHA-256", available algorithms: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#supported_algorithms)
 
 	
+Example Page: https://shnurks.github.io/jsPasswordObfuscator/example.html
